@@ -132,3 +132,14 @@ exec sp_help Sales_With_Category
 Lệnh thay kiểu dữ liệu của cột
 alter table Sales_With_Category
 alter column OrderQuantity float;
+
+Nếu muốn lấy dữ liệu theo năm có thể tham khảo Query này (một số bạn gặp lỗi không lọc dữ liệu từ nhiều bảng)
+SELECT 
+    Sales.ProductKey,
+    Sales.OrderQuantity,
+    Sales.OrderDate,
+    Products.CategoryKey
+INTO Sales_With_Category
+FROM Sales
+JOIN Products ON Products.ProductKey = Sales.ProductKey
+WHERE YEAR(Sales.OrderDate) = 2025;
